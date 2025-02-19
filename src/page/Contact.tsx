@@ -29,13 +29,10 @@ const Contact = () => {
         mail: mail,
         content: content,
       });
-      console.log("メールが送信されました。");
       setIsSending(true);
     } catch (error) {
       console.log(error);
     }
-    console.log("送信されたメール:", mail);
-    console.log("送信されたメッセージ", content);
   };
 
   return (
