@@ -1,8 +1,43 @@
+import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [content, setContent] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+  const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMail(e.target.value);
+  };
+  const handleContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:3001/send-mail", {
+        name: name,
+        mail: mail,
+        content: content,
+      });
+      console.log("メールが送信されました。");
+      setIsSending(true);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("送信されたメール:", mail);
+    console.log("送信されたメッセージ", content);
+  };
+
   return (
     <div>
       <Header />
@@ -14,12 +49,28 @@ const Contact = () => {
           className="container bg-[#d8edff] rounded-2xl w-[90%] h-[100%] mx-auto max-w-[800px]"
         >
           <h2 className="text-4xl text-center pt-10 mb-5">Contact</h2>
-          <form className="w-[70%] h-[550px] mx-auto flex flex-col justify-around">
+          {isSending ? (
+            <motion.p
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="text-[#77d80f] text-center text-xl"
+            >
+              送信完了しました。お問い合わせありがとうございます。
+            </motion.p>
+          ) : (
+            ""
+          )}
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="w-[70%] h-[550px] mx-auto flex flex-col justify-around"
+          >
             <div className="flex justify-between gap-2">
               <label htmlFor="name" className="">
                 Name
               </label>
               <input
+                onChange={(e) => handleName(e)}
                 type="text"
                 id="name"
                 name="name"
@@ -31,6 +82,7 @@ const Contact = () => {
                 mail
               </label>
               <input
+                onChange={(e) => handleMail(e)}
                 type="mail"
                 id="mail"
                 name="mail"
@@ -42,6 +94,7 @@ const Contact = () => {
                 content
               </label>
               <textarea
+                onChange={(e) => handleContent(e)}
                 name="content"
                 id="content"
                 className="w-[80%] h-[200px] p-3 rounded-xl outline-2 outline-gray-500  focus:outline-sky-400"
