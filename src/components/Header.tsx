@@ -23,7 +23,7 @@ const Header = () => {
         <Link to="/works">
           <motion.li whileHover={{ scale: 1.3, y: -10 }}>Works</motion.li>
         </Link>
-        <Link to="/content">
+        <Link to="/contact">
           <motion.li whileHover={{ scale: 1.3, y: -10 }}>Contact</motion.li>
         </Link>
       </ul>

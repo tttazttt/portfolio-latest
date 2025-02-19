@@ -10,6 +10,7 @@ import todoImg from "../img/todo-app.png";
 import typingImg from "../img/typing-app.png";
 import reversiImg from "../img/reversi-app.png";
 import Footer from "../components/Footer";
+import portfolio2503 from "../img/portfolio2503.png";
 
 const Works = () => {
   return (
@@ -211,6 +212,29 @@ const Works = () => {
             <a href="https://reversi-app.vercel.app/">
               <img
                 src={reversiImg}
+                alt="サイトプレビュー"
+                className="w-[100%]"
+              />
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: { duration: 2, delay: 0.3 },
+            }}
+            whileHover={{
+              y: -5,
+              opacity: 0.7,
+              transition: { duration: 0.3, delay: 0 },
+            }}
+            className="works relative after:content-['2代目ポートフォリオ'] after:opacity-0 after:absolute
+            w-[100%] md:w-[calc(94%/3)] md:mb-30"
+          >
+            <a href="https://vercel.com/azs-projects-b9dbaca7/portfolio2503">
+              <img
+                src={portfolio2503}
                 alt="サイトプレビュー"
                 className="w-[100%]"
               />
