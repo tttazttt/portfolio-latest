@@ -23,7 +23,7 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     try {
       await axios.post(`${apiUrl}/send-mail`, {
