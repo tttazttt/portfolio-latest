@@ -5,7 +5,13 @@ const nodemailer = require("nodemailer");
 const port = 3001;
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://portfolio-latest-psi.vercel.app", // 許可するドメイン
+    methods: ["GET", "POST", "PUT", "DELETE"], // 許可するHTTPメソッド
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 app.post("/send-mail", async (req, res) => {
