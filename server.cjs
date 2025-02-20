@@ -7,7 +7,10 @@ const port = 3001;
 const app = express();
 app.use(
   cors({
-    origin: "https://portfolio-latest-psi.vercel.app", // 許可するドメイン
+    origin: [
+      "https://portfolio-latest-psi.vercel.app/api",
+      "http://localhost:3001",
+    ], // 許可するドメイン
     methods: ["GET", "POST", "PUT", "DELETE"], // 許可するHTTPメソッド
     allowedHeaders: ["Content-Type", "Authorization"],
   })
