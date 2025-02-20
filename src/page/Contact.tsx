@@ -23,8 +23,10 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
     try {
-      await axios.post("http://localhost:3001/send-mail", {
+      await axios.post(`${apiUrl}/send-mail`, {
         name: name,
         mail: mail,
         content: content,
