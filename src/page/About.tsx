@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div className="bg-[url('/img/bgAbout.jpg'] w-[100vw] h-screen bg-cover bg-no-repeat">
+    <div className="bg-[url('/bgAbout.jpg'] w-[100vw] h-screen bg-cover bg-no-repeat">
       <Header />
       <div className="w-[100vw] h-screen py-[150px] px-[5%] lg:pb-[100px] lg:pt-[120px] bg-[#ffffff64]">
         <motion.div
